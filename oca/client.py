@@ -20,6 +20,7 @@ OBSERVATORY_ID_SIZE = int(os.environ.get("OBSERVATORY_ID_SIZE","12"))
 OBSERVATORY_ID_ALPHABET  = string.ascii_lowercase+string.digits 
 
 class OCAClient(object):
+    
     def __init__(self,hostname:str, port:int=-1):
         self.base_url = "https://{}".format(hostname) if port == -1 else "http://{}:{}".format(hostname,port)
         self.observatories_url = "{}/observatories".format(self.base_url)
@@ -46,6 +47,7 @@ class OCAClient(object):
             return Ok(obid)
         except Exception as e:
             return Err(e)
+    
     def update_observatory_catalogs(self,obid:str, catalogs:List[LevelCatalog]=[])->Result[str,Exception]:
         try:
             url = "{}/{}".format(self.observatories_url,obid)
@@ -73,6 +75,7 @@ class OCAClient(object):
             ))
         except Exception as e:
             return Err(e)
+    
     def get_observatories(self,skip:int=0,limit:int=10)->Result[List[Observatory],Exception]:
         try:
             url = "{}?skip={}&limit={}".format(self.observatories_url,skip,limit)
@@ -170,6 +173,7 @@ class OCAClient(object):
             return Ok(True)
         except Exception as e:
             return Err(e)
+    
     def delete_product(self,pid:str)->Result[str,Exception]:
         try:
             url = "{}/{}".format(self.products_url,pid)
