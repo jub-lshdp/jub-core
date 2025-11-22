@@ -4,13 +4,13 @@ from nanoid import generate as nanoid
 import string
 import os
 from option import Result,Ok,Err
-from oca.dto import *
+from jub.core.model import *
 import time as T
-from oca.log import Log 
+from jub.core.log import Log 
 import logging
 
 log = Log(
-    name                   = "prueba_miguel" ,
+    name                   = "jub_registry_client" ,
     path                   = "/log" ,
     console_handler_filter = lambda record: True ,
     file_handler_filter    = lambda record: record.levelno == logging.INFO
@@ -19,7 +19,7 @@ log = Log(
 OBSERVATORY_ID_SIZE = int(os.environ.get("OBSERVATORY_ID_SIZE","12"))
 OBSERVATORY_ID_ALPHABET  = string.ascii_lowercase+string.digits 
 
-class OCAClient(object):
+class JubCoreClient(object):
     
     def __init__(self,hostname:str, port:int=-1):
         self.base_url = "https://{}".format(hostname) if port == -1 else "http://{}:{}".format(hostname,port)

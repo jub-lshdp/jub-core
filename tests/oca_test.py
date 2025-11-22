@@ -1,7 +1,7 @@
 import os
 import unittest
 import time as T
-from oca.client import OCAClient,Observatory,LevelCatalog,Catalog,CatalogItem,ProductFilter, TemporalFilter,InterestFilter,SpatialFilter,Product,Level
+from jub.client import OCAClient,Observatory,LevelCatalog,Catalog,CatalogItem,ProductFilter, TemporalFilter,InterestFilter,SpatialFilter,Product,Level
 import pandas as pd
 from concurrent.futures import ThreadPoolExecutor
 from uuid import uuid4

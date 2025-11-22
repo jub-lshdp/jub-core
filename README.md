@@ -1,4 +1,4 @@
-# OCA-Client : Client for observatory management 
+# Jub Core
 
 
 ## Getting started
@@ -20,9 +20,10 @@ class CatalogItem(BaseModel):
 ````
 
 An catalog has many items with the ```CatalogItem``` object definition. You can create an new ```Catalog``` using the oca client, we can create a new oca client using the next code:
+
 ```python
-from oca.client import OCAClient
-oca_client = OCAClient(hostname="localhost",port=5000)
+from jub.core import JubCoreClient
+client = JubCoreClient(hostname="localhost",port=5000)
 ```
 ⚠️ remember to deploy an instance of oca api the step by step guide is [here](https://github.com/muyal-research-group/oca_api)
 
@@ -30,7 +31,8 @@ oca_client = OCAClient(hostname="localhost",port=5000)
 Using this instance of ```OCAClient```, we can create a ```Catalog``` object:
 
 ```python
-from oca.client import Catalog,OCAClient
+from jub.core import JubCoreClient
+from jub.core.model import Catalog
 # Edit the attributes as you need
 catalog = Catalog(
     cid="",
@@ -48,7 +50,7 @@ catalog = Catalog(
     ],
     kind="SOME"
 )
-response = oca_client.create_catalog(
+response = client.create_catalog(
     catalog = catalog
 )
 response.is_ok # => if True the creation was successfully
@@ -75,7 +77,8 @@ class LevelCatalog(BaseModel):
 we can create an ```Observatory``` using the client:
 
 ```python
-import oca.client import OCAClient,Observatory,LevelCatalog
+from jub.core import JubCoreClient
+from jub.core.model import Observatory,LevelCatalog
 
 # edit the attribute as you need..
 observatory = Observatory(
@@ -92,7 +95,7 @@ observatory = Observatory(
     disabled    = False
 )
 
-oca_client.create_observatory(observatory = observatory)
+client.create_observatory(observatory = observatory)
 ```
 
 ⚠️ The attribute ```disabled``` manage the visibility of the observatory object, you can disabled and this observatory disappers without deleting the object. 
@@ -120,7 +123,7 @@ class Level(BaseModel):
 
 we can create multiples products using the next method:
 ```python
-from oca.client import Product, Level
+from jub.core.model import Product, Level
 
 products = [
      Product(
@@ -148,7 +151,7 @@ products = [
             # .....
 ]
 
-response = oca_client.create_products(
+response = client.create_products(
     products = products
 )
 ```
@@ -234,12 +237,12 @@ python3 examples/03_create_products.py 0fec85253ba54359b4482cf70e1cf730 sex3fb25
 For development purposes you need to clone this repo:
 
 ```sh
-git clone git@github.com:muyal-research-group/oca-client.git
+git clone git@github.com:jub-lshdp/jub-core.git
 ```
 
-After you clonning the repo, you must navigate to the ```oca-client``` folder:
+After you clonning the repo, you must navigate to the ```jub-core``` folder:
 ```sh
-cd oca-client
+cd jub-core
 ```
 
 Now you should activating the virtualenv:

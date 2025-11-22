@@ -1,9 +1,10 @@
 import time as T
 import sys 
-from oca.client import OCAClient,LevelCatalog,Catalog
+from jub.core import JubCoreClient
+from jub.core.model import LevelCatalog,Catalog
 from uuid import uuid4
 
-oca_client = OCAClient(
+oca_client = JubCoreClient(
     hostname = "localhost",
     port     = 5000
 )
